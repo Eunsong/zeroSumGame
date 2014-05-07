@@ -1,6 +1,6 @@
 /**
- * Solves for a value and a strategy of a two-person zero-sum game ,
- * given M-by-N matrix representing the game. 
+ * Solves for a value and a strategy of a two-person zero-sum game
+ * using Linear programming, given M-by-N matrix representing the game. 
  */
 import java.util.Arrays;
 
@@ -78,6 +78,7 @@ public class ZeroSumGameLSolver {
  			}
  		}
  		
+ 		// solve LP using Simplex algorithm
  		Simplex LP = new Simplex(M, b, c);
  		double[] y_buff = LP.primal(); // column's best strategy
  		this.value = y_buff[n] - y_buff[n+1];
