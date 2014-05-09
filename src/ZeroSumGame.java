@@ -9,7 +9,7 @@ public class ZeroSumGame {
 		for ( int i = 0; i < m; i++ ){
 			for ( int j = 0; j < n; j++ ){
 				Random generator = new Random();
-				double element = max*(2.0*generator.nextDouble() - 1.0);
+				double element = max*generator.nextDouble(); // random number in range of [0, max]
 				A[i][j] = element;
 			}
 		}
