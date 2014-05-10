@@ -16,7 +16,7 @@ public class ZeroSumGameMWSolver {
 	private double[] x; // row's best strategy
 	private double[] y; // column's best strategy
 	private double delta;
-	private double T;
+	private int T;
 	private double epsilon;
 	
 	public ZeroSumGameMWSolver(double[][] A, double delta){
@@ -25,7 +25,7 @@ public class ZeroSumGameMWSolver {
 		Arrays.fill(x, 1.0);
 		this.y = new double[A[0].length];
 		this.delta = delta;
-		this.T = 16.0*Math.log((double)A.length)/(delta*delta); // number of rounds
+		this.T = (int)(16*Math.log((double)A.length)/(delta*delta)); // number of rounds
 		this.epsilon = Math.min(delta/4.0, 0.5);
 		solve();	
 	}
