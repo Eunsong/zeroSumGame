@@ -1,6 +1,9 @@
 import java.util.Random;
 
-
+/**
+ * @author Eunsong Choi
+ *
+ */
 public class ZeroSumGame {
 	
 	// returns a random mxn matrix representing a zero sum game 

@@ -1,6 +1,8 @@
 /**
  * Solves for a value and a strategy of a two-person zero-sum game
  * using Linear programming, given M-by-N matrix representing the game. 
+ * Note that the matrix element e_ij
+ * indicates the penalty paid by row i to column j, i.e. column's winning.
  */
 import java.util.Arrays;
 
@@ -11,13 +13,13 @@ import java.util.Arrays;
 public class ZeroSumGameLSolver {
 	private double[][] A;
 	private double value; // value of the game
-	private double[] x; // row's best strategy
-	private double[] y; // column's best strategy
-	
+	private double[] x; // column's best strategy
+	private double[] y; // row's best strategy	
+
 	public ZeroSumGameLSolver(double[][] A){
 		this.A = A;
-		this.x = new double[A.length];
-		this.y = new double[A[0].length];
+		this.y = new double[A.length];
+		this.x = new double[A[0].length];
 		solve();
 	}
 	
@@ -26,11 +28,11 @@ public class ZeroSumGameLSolver {
 	}
 	
 	public double[] getColStrategy() {
-		return this.y;
+		return this.x;
 	}
 	
 	public double[] getRowStrategy(){
-		return this.x;
+		return this.y;
 	}
 	
 	public void solve(){
@@ -80,14 +82,14 @@ public class ZeroSumGameLSolver {
  		
  		// solve LP using Simplex algorithm
  		Simplex LP = new Simplex(M, b, c);
- 		double[] y_buff = LP.primal(); // column's best strategy
- 		this.value = y_buff[n] - y_buff[n+1];
+ 		double[] x_buff = LP.primal(); // column's best strategy
+ 		this.value = x_buff[n] - x_buff[n+1];
  		for ( int i = 0; i < n; i++ ){
- 			this.y[i] = y_buff[i];
- 		}
- 		double[] x_buff = LP.dual(); // row's best strategy
- 		for ( int i = 0; i < m; i++ ){
  			this.x[i] = x_buff[i];
+ 		}
+ 		double[] y_buff = LP.dual(); // row's best strategy
+ 		for ( int i = 0; i < m; i++ ){
+ 			this.y[i] = y_buff[i];
  		}
  		
 	}
