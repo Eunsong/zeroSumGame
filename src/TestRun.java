@@ -13,7 +13,7 @@ public class TestRun {
 		//double[][] A = new double[m][n];
 		//double[][] A = {{0.2523, 0.873}, {0.82, 0.173}};
 		double[][] A = {{0.2, 0.3}, {0.8,0.7}}; 
-		ZeroSumGameLSolver sol1 = new ZeroSumGameLSolver(A);
+		LPSolver sol1 = new LPSolver(A);
 		double value = sol1.getValue();
 		double[] colStrategy = sol1.getColStrategy();
 		double[] rowStrategy = sol1.getRowStrategy();
@@ -31,7 +31,7 @@ public class TestRun {
 		System.out.println("value of the game is(LP) : " + value);
 		//A = ZeroSumGame.genGame(m,n,max);
 		double delta = 0.1;
-		ZeroSumGameMWSolver sol2 = new ZeroSumGameMWSolver(A, delta);
+		MWSolver sol2 = new MWSolver(A, delta);
 		double value2 = sol2.getValue();
 		double[] rowStrategyMW = sol2.getRowStrategy();
 		System.out.println("Row strategy(MW)");
